@@ -1,0 +1,15 @@
+import subprocess
+
+# Repository path
+repo_path = "/path/to/your/repo"
+
+# Check for uncommitted changes
+status = subprocess.check_output(
+    ["git", "-C", repo_path, "status", "--short"], text=True
+)
+
+if status.strip():
+    print("Uncommitted changes detected:")
+    print(status)
+else:
+    print("No uncommitted changes.")
