@@ -1,0 +1,25 @@
+import os
+import subprocess
+import shutil
+
+# List of repositories to back up
+repos = [
+    "/path/to/repo1",
+    "/path/to/repo2",
+    "/path/to/repo3"
+]
+
+# Backup directory
+backup_dir = "backup_repos"
+
+if not os.path.exists(backup_dir):
+    os.makedirs(backup_dir)
+
+for repo in repos:
+    repo_name = os.path.basename(repo)
+    archive_path = os.path.join(backup_dir, f"{repo_name}.tar.gz")
+    print(f"Archiving {repo_name}...")
+    try:
+        shutil.make_archive(archive_path.replace('.tar.gz', ''), 'gztar', repo)
+    except Exception as e:
+        print(f"Error archiving {repo_name}: {e}")
